@@ -3,6 +3,7 @@
 <head>
     <title>NgCurrencyFormatter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/demo.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -11,31 +12,83 @@
 
         <h1>ngCurrencyFormatter</h1>
 
-        <h2>For Development with Bootstrap</h2>
+        <p>For Development with Bootstrap</p>
 
-        <h3>Scope Value</h3>
+        <h2>Introduction</h2>
 
+        <p>This is a module to add some directives to angular js for helping format currency fields. The module has a currency control that has the class attributes defiened by <a href="http://getbootstrap.com/" target="_blank">bootstrap</a>. The controls format the input element for the currency input and return an float.</p>
+
+        <h2>Using in your application</h2>
+
+        <p>To get ngCurrencyFormatter set up in you application download the latest version from github and add the <code>ngcurrencyformatter.min.js</code> to your application</p>
+
+        <div class="highlight">
+            <code>
+
+                <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"angular.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span><br />
+                <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"<b>ngcurrencyformatter.min.js</b>"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+            </code>
+        </div>
+
+        <p>Reference the module in your application.</p>
+
+        <div class="highlight">
+            <code>
+                angular.module('myDemoApp', [<b>'ngCurrencyFormatter'</b>])
+            </code>
+        </div>
+
+        <p>Use it in your controller. Because there are only filters and directives you don't need to add any code to your controllers to use them.</p>
+
+        <h2>Demo</h2>
+
+        <h3>Scope value</h3>
+        
         <span ng-bind="price"></span>
 
         <h3>Angular Original Currency Filter</h3>
 
         <p>No symbol</p>
 
-        <span ng-bind="price | currency:''"></span>
+        <span ng-bind="price | currency:'''"></span>
+
+        <hr />
 
         <h3>ngCurrencyInputFormatter</h3>
 
         <p>The basic formatter for ng-Currency</p>
 
+
+
+
         <h4>With Decimals</h4>
 
-        <input type="tel" ng-currency-input-formatter decimals="ngCurrencyFormatter.withDecimals" name="name" ng-model="price" />
+        <div class="highlight">
+            <code>
+                &lt;input type="tel" ng-currency-input-formatter decimals="'true'" name="name" ng-model="price" /&gt;
+            </code>
+        </div>
+
+
+        <input type="tel" ng-currency-input-formatter decimals="'true'" name="name" ng-model="price" />
+
+
+
 
         <h4>No Decimals</h4>
 
-        <input type="tel" ng-currency-input-formatter decimals="ngCurrencyFormatter.noDecimals" name="name" ng-model="price" />
+        <div class="highlight">
+            <code>
+                &lt;input type="tel" ng-currency-input-formatter decimals="'true'" name="name" ng-model="price" /&gt;
+            </code>
+        </div>
 
-        <span ng-bind="price | currency"></span>
+        <input type="tel" ng-currency-input-formatter name="name" ng-model="price" />
+
+
+
+        <hr />
 
         <h3>ngCurrencyInput</h3>
 
@@ -46,6 +99,13 @@
         <p>By default the control has no decimal places and no currency character</p>
 
 
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+
         <ng-currency-input name="name" amount="price">
         </ng-currency-input>
 
@@ -54,37 +114,73 @@
 
         <p>Decimals can be activated in the currncy control by adding "true" to a decimal attribute.</p>
 
-        <ng-currency-input name="name" amount="price" decimals="ngCurrencyFormatter.withDecimals">
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; decimals=&quot;'true'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" amount="price" decimals="'true'">
         </ng-currency-input>
 
         <h4>Adding Currency</h4>
 
-        <h5>Pound</h5>
+        <p>Currencies can be added by setting currency attribute to the currency required <code>currency="'&pound;'"</code></p>
 
-        <ng-currency-input name="name" amount="price" currency="ngCurrencyFormatter.pounds">
+        <em>Pound</em>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currency=&quot;'&pound;'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" amount="price" currency="'£'">
         </ng-currency-input>
 
-        <h5>Dollars</h5>
+        <>Dollars</>
 
-        <ng-currency-input name="name" amount="price"  currency="ngCurrencyFormatter.dollars">
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currency=&quot;'$'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" amount="price" currency="'$'">
         </ng-currency-input>
 
-        <h5>Euros</h5>
+        <em>Euros</em>
 
-        <ng-currency-input name="name" amount="price"  currency="ngCurrencyFormatter.euro">
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currency=&quot;'&euro;'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" amount="price" currency="ngCurrencyFormatter.euro">
         </ng-currency-input>
 
         <h3>Currency Position</h3>
 
         <p>In some cultures the currency symbol is position on the right of the amount.</p>
 
-        <ng-currency-input name="name" amount="price"  currencyright="ngCurrencyFormatter.currencyRight" currency="ngCurrencyFormatter.euro">
+        <p>This is enabled by setting the right positioning attribute to true <code>currencyright="'true'"</code></p>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currencyright=&quot;'true'&quot; currency=&quot;'&euro;'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" amount="price" currencyright="'true'" currency="'€'">
         </ng-currency-input>
 
+        <hr />
 
     </div>
     <script src="js/api/angular.min.js"></script>
-    <script src="../src/ngcurrencyformater.min.js"></script>
+    <script src="../src/ngcurrencyformatter.min.js"></script>
     <script src="js/app.js"></script>
 
 </body>
