@@ -74,7 +74,7 @@ ngCurrencyFormatter.filter('ngCurrencyFormatterComma', function () {
     };
 
 });
-///#source 1 1 /src/filter/uncomma.flt.js
+///#source 1 1 /src/filter/unComma.flt.js
 ngCurrencyFormatter.filter('ngCurrencyFormatterUnComma', function () {
 
     return function (text) {
@@ -84,6 +84,27 @@ ngCurrencyFormatter.filter('ngCurrencyFormatterUnComma', function () {
     };
 
 });
+///#source 1 1 /src/input/input.dir.js
+ngCurrencyFormatter.directive('ngCurrencyInput', ['$filter', '$compile', function ($filter, $compile) {
+
+    return {
+
+        restrict: 'E',
+        scope: {
+            currency: "=",
+            amount: "=",
+            decimals: '=',
+            currencyright: '='
+        },
+        replace: true,
+        template: '<div class="input-group"><span class="input-group-addon" ng-show="currency&&!currencyright" ng-bind="currency"></span><input class="form-control"  ng-currency-input-formatter decimals="decimals"  ng-model="amount" type="tel"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span> <span ng-show="currencyright"  ng-bind="currency"></span></span></div>  ',
+        link: function (scope, element, attrs) {
+
+
+        }
+
+    }
+}]);
 ///#source 1 1 /src/input/inputFormatter.dir.js
 ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile', function ($filter, $compile) {
 
@@ -95,7 +116,7 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
         },
         link: function (scope, element, attrs) {
 
-            element.on('change', function () {
+            element.on('blur', function () {
 
                 attrs.type = "text";
 
@@ -142,31 +163,4 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
 
     }
 
-}]);
-///#source 1 1 /src/input/input.dir.js
-ngCurrencyFormatter.directive('ngCurrencyInput', ['$filter', '$compile', function ($filter, $compile) {
-
-    return {
-
-        restrict: 'E',
-        scope: {
-            currency: "=",
-            amount: "=",
-            decimals: '=',
-            currencyright: '='
-        },
-        replace: true,
-        template: '<div class="input-group"><span class="input-group-addon" ng-show="currency&&!currencyright" ng-bind="currency"></span><input class="form-control"  ng-currency-input-formatter decimals="decimals"  ng-model="amount" type="tel"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span> <span ng-show="currencyright"  ng-bind="currency"></span></span></div>  ',
-        link: function (scope, element, attrs) {
-
-            $scope.$watch('amount', function (newValue) {
-
-                console.log("amount changed", newValue);
-
-            });
-
-
-        }
-
-    }
 }]);

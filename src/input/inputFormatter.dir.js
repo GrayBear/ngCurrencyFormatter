@@ -8,7 +8,7 @@
         },
         link: function (scope, element, attrs) {
 
-            element.on('change', function () {
+            element.on('blur', function () {
 
                 attrs.type = "text";
 
