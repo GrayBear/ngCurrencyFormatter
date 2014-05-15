@@ -6,12 +6,8 @@
         </select>
         <span ng-bind="currency">
         </span>
-
-
-    </div><!-- /btn-group -->
-
-    <input ng-currency-input-formatter decimals="decimals" ng-blur="updateValue()" ng-model="amount" type="tel" class="form-control">
-
+    </div>
+    <input ng-currency-input-formatter decimals="decimals" ng-blur="updateValue()" ng-model="amount" type="tel" class="form-control" />
     <span ng-show="!decimals||currencyright" class="input-group-addon">
         <span ng-show="!decimals">.00</span>
         <span ng-show="currencyright" ng-bind="currency"></span>
