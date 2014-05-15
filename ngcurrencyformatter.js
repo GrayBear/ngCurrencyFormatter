@@ -116,7 +116,8 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
 
         restrict: 'A',
         scope: {
-            decimals: '='
+            decimals: '=',
+            ngModel: '='
         },
         link: function (scope, element, attrs) {
 
@@ -127,6 +128,10 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
                 var decimalPoints = 0;
                 if (scope.decimals) decimalPoints = 2;
 
+                scope.$apply(function () {
+                    scope.ngModel = parseFloat(scope.ngModel);
+                });
+
                 var currencyFilter = $filter('ngCurrencyFormatterComma');
                 var result = currencyFilter(element.val(), decimalPoints);
 
@@ -134,6 +139,8 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
             });
 
             element.on('focus', function () {
+
+
 
 
                 var currencyFilter = $filter('ngCurrencyFormatterUnComma');
@@ -152,7 +159,7 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
                 //ToDo: decimals but only one
 
                 //numbers
-                if (key <= 48 || key >= 58) {
+                if (key <= 47 || key >= 58) {
 
                     evt.preventDefault();
 
