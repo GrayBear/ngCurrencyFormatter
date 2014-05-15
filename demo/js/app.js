@@ -3,4 +3,12 @@
         $scope.price = 0;
 
 
+        $scope.frequency = {
+            perDay: 0,
+            perMonth: 0,
+            perYear: 0,
+            frequency: ''
+        };
+         
+
     }]);

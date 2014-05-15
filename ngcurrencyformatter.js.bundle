@@ -6,4 +6,5 @@
   <file>/src/filter/unComma.flt.js</file>
   <file>/src/input/input.dir.js</file>
   <file>/src/input/inputFormatter.dir.js</file>
+	<file>/src/input/inputfrequency.dir.js</file>
 </bundle>

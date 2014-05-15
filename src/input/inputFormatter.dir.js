@@ -2,6 +2,10 @@
 
     return {
 
+        //https://github.com/angular-ui/ui-utils/blob/master/modules/mask/mask.js look at this to fix binding
+
+        
+
         restrict: 'A',
         scope: {
             decimals: '='
