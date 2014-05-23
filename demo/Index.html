@@ -44,12 +44,146 @@
         <h2>Demo</h2>
 
         <h3>Scope value</h3>
-        
+
         {{price}}
 
 
 
         <hr />
+
+        <h3>ngLoanCalculator</h3>
+
+        <ng-loan-calculator currency="'£'" loan-amount='loanCalculator.amount' interest-rate="loanCalculator.interestRate" loan-term="loanCalculator.term"></ng-loan-calculator>
+
+        <h3>ngCurrencyInputFrequency</h3>
+
+        <h4>Default</h4>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input-formatter  ng-Model=&quot;price&quot; perday=&quot;frequency.perDay&quot;  permonth=&quot;frequency.perMonth&quot;  peryear=&quot;frequency.perYear&quot; frequency=&quot;frequency.frequency&quot;  currency=&quot;'$'&quot;&gt; &lt;/ng-currency-input-formatter&gt;
+            </code>
+        </div>
+
+        <form role="form">
+            <ng-currency-input-formatter ng-model="price" frequency="frequency.frequency" currency="'$'" perday="frequency.perDay" permonth="frequency.perMonth" peryear="frequency.perYear"></ng-currency-input-formatter>
+        </form>
+
+        <p>Results from directive</p>
+
+        <table class="table">
+            <tr>
+                <th>Period</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Per Day</td>
+                <td ng-bind="frequency.perDay  | currency"></td>
+            </tr>
+            <tr>
+                <td>Per Month</td>
+                <td ng-bind="frequency.perMonth  | currency"></td>
+            </tr>
+            <tr>
+                <td>Per Year</td>
+                <td ng-bind="frequency.perYear | currency"></td>
+            </tr>
+
+        </table>
+
+        <hr />
+
+        <h3>ngCurrencyInput</h3>
+
+        <h4>Default</h4>
+
+        <p>This is the currency box with no options other than the amount.</p>
+
+        <p>By default the control has no decimal places and no currency character</p>
+
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; ng-Model=&quot;price&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+
+        <ng-currency-input name="name" ng-model="price">
+        </ng-currency-input>
+
+
+        <h4>with Decimals</h4>
+
+        <p>Decimals can be activated in the currncy control by adding "true" to a decimal attribute.</p>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; ng-model=&quot;price&quot; decimals=&quot;'true'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" ng-model="price" decimals="'true'">
+        </ng-currency-input>
+
+        <h4>Adding Currency</h4>
+
+        <p>Currencies can be added by setting currency attribute to the currency required <code>currency="'&pound;'"</code></p>
+
+        <em>Pound</em>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; ng-model=&quot;price&quot; currency=&quot;'&pound;'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" ng-model="price" currency="'£'">
+        </ng-currency-input>
+
+        <em>Dollars</em>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; ng-model=&quot;price&quot; currency=&quot;'$'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" ng-model="price" currency="'$'">
+        </ng-currency-input>
+
+        <em>Euros</em>
+
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; ng-model=&quot;price&quot; currency=&quot;'&euro;'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" ng-model="price" currency="'€'">
+        </ng-currency-input>
+
+        <h3>Currency Position</h3>
+
+        <p>In some cultures the currency symbol is position on the right of the amount.</p>
+
+        <p>This is enabled by setting the right positioning attribute to true <code>currencyright="'true'"</code></p>
+
+        <div class="highlight">
+            <code>
+                &lt;ng-currency-input name=&quot;name&quot; ng-model=&quot;price&quot; currencyright=&quot;'true'&quot; currency=&quot;'&euro;'&quot;&gt; &lt;/ng-currency-input&gt;
+            </code>
+        </div>
+
+        <ng-currency-input name="name" ng-model="price" currencyright="'true'" currency="'€'">
+        </ng-currency-input>
+
+
+
+        <hr />
+
+
 
         <h3>ngCurrencyInputFormatter</h3>
 
@@ -86,127 +220,7 @@
 
         <hr />
 
-        <h3>ngCurrencyInput</h3>
 
-        <h4>Default</h4>
-
-        <p>This is the currency box with no options other than the amount.</p>
-
-        <p>By default the control has no decimal places and no currency character</p>
-
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot;&gt; &lt;/ng-currency-input&gt;
-            </code>
-        </div>
-
-
-        <ng-currency-input name="name" amount="price">
-        </ng-currency-input>
-
-
-        <h4>with Decimals</h4>
-
-        <p>Decimals can be activated in the currncy control by adding "true" to a decimal attribute.</p>
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; decimals=&quot;'true'&quot;&gt; &lt;/ng-currency-input&gt;
-            </code>
-        </div>
-
-        <ng-currency-input name="name" amount="price" decimals="'true'">
-        </ng-currency-input>
-
-        <h4>Adding Currency</h4>
-
-        <p>Currencies can be added by setting currency attribute to the currency required <code>currency="'&pound;'"</code></p>
-
-        <em>Pound</em>
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currency=&quot;'&pound;'&quot;&gt; &lt;/ng-currency-input&gt;
-            </code>
-        </div>
-
-        <ng-currency-input name="name" amount="price" currency="'£'">
-        </ng-currency-input>
-
-        <em>Dollars</em>
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currency=&quot;'$'&quot;&gt; &lt;/ng-currency-input&gt;
-            </code>
-        </div>
-
-        <ng-currency-input name="name" amount="price" currency="'$'">
-        </ng-currency-input>
-
-        <em>Euros</em>
-
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currency=&quot;'&euro;'&quot;&gt; &lt;/ng-currency-input&gt;
-            </code>
-        </div>
-
-        <ng-currency-input name="name" amount="price" currency="'€'">
-        </ng-currency-input>
-
-        <h3>Currency Position</h3>
-
-        <p>In some cultures the currency symbol is position on the right of the amount.</p>
-
-        <p>This is enabled by setting the right positioning attribute to true <code>currencyright="'true'"</code></p>
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input name=&quot;name&quot; amount=&quot;price&quot; currencyright=&quot;'true'&quot; currency=&quot;'&euro;'&quot;&gt; &lt;/ng-currency-input&gt;
-            </code>
-        </div>
-
-        <ng-currency-input name="name" amount="price" currencyright="'true'" currency="'€'">
-        </ng-currency-input>
-
-        <hr />
-
-        <h3>ngCurrencyInputFrequency</h3>
-
-        <h4>Default</h4>
-
-        <div class="highlight">
-            <code>
-                &lt;ng-currency-input-formatter  amount=&quot;price&quot; perday=&quot;frequency.perDay&quot;  permonth=&quot;frequency.perMonth&quot;  peryear=&quot;frequency.perYear&quot; frequency=&quot;frequency.frequency&quot;  currency=&quot;'$'&quot;&gt; &lt;/ng-currency-input-formatter&gt;
-            </code>
-        </div>
-
-
-        <ng-currency-input-formatter amount="price" perday="frequency.perDay" frequency="frequency.frequency" currency="'$'" permonth="frequency.perMonth" peryear="frequency.perYear"></ng-currency-input-formatter>
-
-
-        <table class="table">
-            <tr>
-                <th>Period</th>
-                <th>Amount</th>
-            </tr>
-            <tr>
-                <td>Per Day</td>
-                <td ng-bind="frequency.perDay  | currency"></td>
-            </tr>
-            <tr>
-                <td>Per Month</td>
-                <td ng-bind="frequency.perMonth  | currency"></td>
-            </tr>
-            <tr>
-                <td>Per Year</td>
-                <td ng-bind="frequency.perYear | currency"></td>
-            </tr>
-
-        </table>
     </div>
     <script src="js/api/angular.min.js"></script>
     <script src="/ngcurrencyformatter.min.js"></script>

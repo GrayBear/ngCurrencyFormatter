@@ -1,0 +1,31 @@
+﻿<fieldset>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Loan Amount</label>
+        <ng-currency-input name="name" ng-model="loanAmount" decimals="decimals" ng-change="calculateRepayments()" currencyright="currencyright" currency="currency">
+        </ng-currency-input>
+    </div>
+    <div class="form-group">
+        <label for="interestRate">Interest Rate</label>
+        <div class="input-group">
+            <span class="input-group-addon">%</span>
+            <input name="interestRate" id="interestRate" ng-model="interestRate" ng-change="calculateRepayments()" type="number" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loanTerm">Term (months)</label>
+        <input name="loanTerm" id="loanTerm" type="number" ng-model="loanTerm" ng-change="calculateRepayments()" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="monthlyPayment">Repayment</label>
+        <ng-currency-input name="monthlyPayment" ng-model="monthlyPayment"  decimals="decimals" currencyright=" currencyright" currency=" currency">
+        </ng-currency-input>
+    </div>
+    <div class="form-group">
+        <label for="totalLoan">Total Repayable</label>
+        <ng-currency-input name="totalLoan" ng-model="totalLoan"  decimals="decimals" currencyright=" currencyright" currency=" currency">
+        </ng-currency-input>
+    </div>
+</fieldset>
+
+
+

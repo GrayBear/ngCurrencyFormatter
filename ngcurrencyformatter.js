@@ -92,12 +92,14 @@ ngCurrencyFormatter.directive('ngCurrencyInput', ['$filter', '$compile', functio
         restrict: 'E',
         scope: {
             currency: "=",
-            amount: "=",
+            ngModel: "=",
             decimals: '=',
-            currencyright: '='
+            currencyright: '=',
+            readOnly: '=',
+            ngChange:'='
         },
         replace: true,
-        template: '<div class="input-group"><span class="input-group-addon" ng-show="currency&&!currencyright" ng-bind="currency"></span><input class="form-control"  ng-currency-input-formatter decimals="decimals"  ng-model="amount" type="tel"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span> <span ng-show="currencyright"  ng-bind="currency"></span></span></div>  ',
+        template: '<div class="input-group"><span class="input-group-addon" ng-show="currency&&!currencyright" ng-bind="currency"></span><input class="form-control" ng-change="ngChange" ng-currency-input-formatter decimals="decimals" ng-readonly="readOnly"  ng-model="ngModel" type="tel"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span> <span ng-show="currencyright"  ng-bind="currency"></span></span></div>  ',
         link: function (scope, element, attrs) {
 
 
@@ -182,7 +184,7 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
         restrict: 'E',
         scope: {
             currency: "=",
-            amount: "=",
+            ngModel: "=",
             decimals: '=',
             currencyright: '=',
             perday: '=',
@@ -191,7 +193,7 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
             frequency: '='
         },
         replace: true,
-        template: '<div class="input-group"><div class="input-group-addon"><select ng-options="frequency.name for frequency in frequencies" ng-change="updateValue()" ng-model="frequency"><option value="">Select</option></select><span ng-bind="currency"></span></div><input ng-currency-input-formatter decimals="decimals" ng-blur="updateValue()" ng-model="amount" type="tel" class="form-control"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span><span ng-show="currencyright" ng-bind="currency"></span></span></div>',
+        template: '<div class="input-group"><div class="input-group-addon"><select ng-options="frequency.name for frequency in frequencies" ng-change="updateValue()" ng-model="frequency"><option value="">Select</option></select><span ng-bind="currency"></span></div><input ng-currency-input-formatter decimals="decimals" ng-blur="updateValue()" ng-model="ngModel" type="tel" class="form-control"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span><span ng-show="currencyright" ng-bind="currency"></span></span></div>',
         link: function (scope, element, attrs) {
 
             var frequencies = [];
@@ -224,7 +226,7 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
 
                 if (scope.frequency) {
 
-                    var perDay = scope.amount / scope.frequency.days;
+                    var perDay = scope.ngModel / scope.frequency.days;
 
 
                     if (scope.perday >= 0) {
@@ -247,5 +249,55 @@ ngCurrencyFormatter.directive('ngCurrencyInputFormatter', ['$filter', '$compile'
             };
 
         }
+    }
+}]);
+///#source 1 1 /src/input/loancalculator/inputloancalculator.dir.js
+ngCurrencyFormatter.directive('ngLoanCalculator', ['$filter', function ($filter) {
+    
+    return {
+        restrict: 'E',
+        scope: {
+            currency: "=",
+            decimals: '=',
+            currencyright: '=',
+            loanAmount: '=',
+            loanTerm: '=',
+            interestRate: '=',
+            PaymentPerMonth: '=',
+        },
+        templateUrl: "../src/input/loanCalculator/inputLoanCalculator.tpl.html",
+        replace: true,
+        link: function (scope, element, attrs) {
+
+
+            calculateRepayments();
+
+
+            scope.calculateRepayments = function () {
+
+                calculateRepayments();
+                console.log('calulationPayments');
+
+            };
+
+            function calculateRepayments() {
+
+                var decimalPlaces = 0;
+                if (scope.decimals == true) {
+                
+                    decimalPlaces = 2;
+
+                }
+
+                scope.periodicRate = (scope.interestRate / 100) / 12;
+                scope.monthlyPayment = (scope.loanAmount * (scope.periodicRate / (1 - Math.pow(((1 + scope.periodicRate)), (-scope.loanTerm))))).toFixed(decimalPlaces);
+
+                scope.totalLoan = (scope.monthlyPayment * scope.loanTerm).toFixed(decimalPlaces);
+     
+
+            }
+
+        }
+
     }
 }]);

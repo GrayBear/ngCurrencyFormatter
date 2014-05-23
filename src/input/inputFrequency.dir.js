@@ -4,7 +4,7 @@
         restrict: 'E',
         scope: {
             currency: "=",
-            amount: "=",
+            ngModel: "=",
             decimals: '=',
             currencyright: '=',
             perday: '=',
@@ -13,7 +13,7 @@
             frequency: '='
         },
         replace: true,
-        template: '<div class="input-group"><div class="input-group-addon"><select ng-options="frequency.name for frequency in frequencies" ng-change="updateValue()" ng-model="frequency"><option value="">Select</option></select><span ng-bind="currency"></span></div><input ng-currency-input-formatter decimals="decimals" ng-blur="updateValue()" ng-model="amount" type="tel" class="form-control"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span><span ng-show="currencyright" ng-bind="currency"></span></span></div>',
+        template: '<div class="input-group"><div class="input-group-addon"><select ng-options="frequency.name for frequency in frequencies" ng-change="updateValue()" ng-model="frequency"><option value="">Select</option></select><span ng-bind="currency"></span></div><input ng-currency-input-formatter decimals="decimals" ng-blur="updateValue()" ng-model="ngModel" type="tel" class="form-control"><span ng-show="!decimals||currencyright" class="input-group-addon"><span ng-show="!decimals">.00</span><span ng-show="currencyright" ng-bind="currency"></span></span></div>',
         link: function (scope, element, attrs) {
 
             var frequencies = [];
@@ -46,7 +46,7 @@
 
                 if (scope.frequency) {
 
-                    var perDay = scope.amount / scope.frequency.days;
+                    var perDay = scope.ngModel / scope.frequency.days;
 
 
                     if (scope.perday >= 0) {

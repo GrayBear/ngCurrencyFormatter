@@ -7,4 +7,5 @@
   <file>/src/input/input.dir.js</file>
   <file>/src/input/inputFormatter.dir.js</file>
 	<file>/src/input/inputfrequency.dir.js</file>
+	<file>/src/input/loancalculator/inputloancalculator.dir.js</file>
 </bundle>

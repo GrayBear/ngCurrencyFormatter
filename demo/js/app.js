@@ -9,6 +9,14 @@
             perYear: 0,
             frequency: ''
         };
+
+        $scope.loanCalculator = {
+
+            term: 300, // months
+            amount: 15000,
+            interestRate: 5.53,
+
+        };
          
 
     }]);
